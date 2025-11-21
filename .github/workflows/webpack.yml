@@ -1,37 +1,4 @@
-    - name: Install Dependencies
-      run: npm ci
-
-    - name: Build Project
-      run: npm run build:prod
-      env:
-        NODE_OPTIONS: --openssl-legacy-provider
-
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: dist-files
-        path: dist/
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: dist-files
-          path: dist/
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: courseware-web
-          directory: dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
->>>>>>> 0b322a2deff9c1fd9bc051d1aa8bdeee2a456785
-name: Build and Deploy to Cloudflare Pages
+name: NodeJS with Webpack
 
 on:
   push:
@@ -45,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [18.x, 20.x, 22.x]
 
     steps:
     - uses: actions/checkout@v4
@@ -55,69 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Install Dependencies
-      run: npm ci
-
-    - name: Build Project
-      run: npm run build:prod
-      env:
-        NODE_OPTIONS: --openssl-legacy-provider
-
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: dist-files
-        path: dist/
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: dist-files
-          path: dist/
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: courseware-web
-          directory: dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-=======
-    - name: Install Dependencies
-      run: npm ci
-
-    - name: Build Project
-      run: npm run build:prod
-      env:
-        NODE_OPTIONS: --openssl-legacy-provider
-
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: dist-files
-        path: dist/
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: dist-files
-          path: dist/
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: courseware-web
-          directory: dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
->>>>>>> 0b322a2deff9c1fd9bc051d1aa8bdeee2a456785
+    - name: Build
+      run: |
+        npm install
+        npx webpack

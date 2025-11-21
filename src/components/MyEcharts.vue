@@ -1,5 +1,5 @@
 <template>
-  <div :id="uuid" :style="style"></div>
+  <div :id="uuid" :style="style" />
 </template>
 
 <script>
@@ -36,11 +36,20 @@ export default {
     }
   },
 
+  computed: {
+
+    style() {
+      return {
+        height: this.height,
+        width: this.width
+      }
+    }
+
+  },
+
   watch: {
 
     width(a, b) {
-
-
       if (this.myChart) {
         setTimeout(() => {
           this.myChart.resize({
@@ -48,7 +57,7 @@ export default {
               duration: 300
             }
           })
-        }, 0);
+        }, 0)
       }
     },
 
@@ -61,27 +70,16 @@ export default {
     }
   },
 
-  computed: {
-
-    style() {
-      return {
-        height: this.height,
-        width: this.width
-      }
-    }
-
-  },
-
   created() {
     this.uuid = idGen()
   },
 
   mounted() {
     // 准备实例
-    this.myChart = echarts.init(document.getElementById(this.uuid));
+    this.myChart = echarts.init(document.getElementById(this.uuid))
 
     // 应用配置项
-    this.myChart.setOption(this.options);
+    this.myChart.setOption(this.options)
   }
 }
 </script>

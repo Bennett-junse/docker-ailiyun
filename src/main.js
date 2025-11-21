@@ -11,17 +11,17 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
-// import '@/icons' // icon  // 移除了对图标库的引用
+// import '@/icons' // icon  // Removed icon library reference
 import '@/permission' // permission control
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import * as echarts from 'echarts'
 import watermark from './watermark'
-import 'default-passive-events'
+
 
 Vue.directive('watermark', {
-  bind: function (el, binding) {
-    let text = binding.value
+  bind: function(el, binding) {
+    const text = binding.value
     watermark.set(text)
   }
 })
@@ -41,7 +41,7 @@ Vue.directive('watermark', {
 // set ElementUI lang to EN
 // Vue.use(ElementUI, { locale })
 
-// 如果想要中文版 element-ui，按如下方式声明
+// If you want to use Chinese version of element-ui, declare as follows
 Vue.use(ElementUI)
 Vue.prototype.$echarts = echarts
 Vue.prototype.$axios = axios
@@ -49,7 +49,7 @@ Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
 // axios.defaults.baseUrl = 'http://10.250.200.233:8000'
-// axios.defailts.timeout = 5
+// axios.defaults.timeout = 5000
 new Vue({
   el: '#app',
   router,

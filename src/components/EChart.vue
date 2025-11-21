@@ -1,32 +1,32 @@
 <template>
-  <div id="chart"></div>
+  <div id="chart" />
 </template>
-  
-  <script>
+
+<script>
 import * as echarts from 'echarts'
 
 export default {
   props: {
     option: {
       type: Object,
-      default: () => {},
-    },
-  },
-  mounted() {
-    this.chart = echarts.init(document.getElementById("chart"));
-  },
-  methods: {
-    updateOption(newOption) {
-      this.chart.setOption(newOption);
-    },
+      default: () => {}
+    }
   },
   watch: {
     option: {
       deep: true,
       handler(newOption) {
-        this.updateOption(newOption);
-      },
-    },
+        this.updateOption(newOption)
+      }
+    }
   },
-};
+  mounted() {
+    this.chart = echarts.init(document.getElementById('chart'))
+  },
+  methods: {
+    updateOption(newOption) {
+      this.chart.setOption(newOption)
+    }
+  }
+}
 </script>

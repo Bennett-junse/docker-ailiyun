@@ -3,35 +3,33 @@ import Router from 'vue-router'
 Vue.use(Router)
 import Layout from '@/layout'
 
-
-
-// 无权限认证
+// No permission authentication
 export const constantRoutes = [
 
-  // 登陆
+  // Login
   {
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
   },
 
-  // 错误页
+  // Error page
   {
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
   },
 
-  // 仪表盘
+  // Dashboard
   {
     redirect: 'noRedirect',
     path: '/',
     component: Layout,
     children: [{
       path: '/',
-      name: '仪表盘',
+      name: 'Dashboard',
       component: () => import('@/views/Dashboard/index'),
-      meta: { title: '仪表盘', icon: 'dashboard' }
+      meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
 
@@ -39,7 +37,7 @@ export const constantRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-// 移除异步路由，只保留基础功能
+// Remove async routes, keep only basic functionality
 
 const createRouter = () => new Router({
   mode: 'hash', // require service support

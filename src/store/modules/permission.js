@@ -5,7 +5,7 @@ import { constantRoutes } from '@/router'
  * @param roles
  * @param route
  */
-//匹配权限
+// 匹配权限
 function hasPermission(roles, route) {
   if (route.meta && route.meta.roles) {
     return roles.some(role => route.meta.roles.includes(role))
@@ -47,18 +47,18 @@ const mutations = {
   }
 }
 
-//筛选
+// 筛选
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
       let accessedRoutes
-     
+
       if (roles.includes('admin')) {
         var arr = []
         // 添加基本路由
         accessedRoutes = arr || []
       } else {
-        //过滤路由
+        // 过滤路由
         accessedRoutes = filterAsyncRoutes([], roles) // 传递空数组而不是 asyncRoutes
       }
       commit('SET_ROUTES', accessedRoutes)

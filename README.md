@@ -1,3 +1,4 @@
+# Courseware Web Project
 
 ## Build Setup
 
@@ -42,3 +43,8 @@ npm run lint
 # code format check and auto fix
 npm run lint -- --fix
 ```
+
+## Documentation
+
+- [Technical Documentation](TECHNICAL_DOCS.md)
+- [Environment Configuration Guide](ENVIRONMENT_CONFIG.md)

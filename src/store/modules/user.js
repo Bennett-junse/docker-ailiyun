@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { logout } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 import watermark from '@/watermark'
@@ -36,10 +36,10 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      // 添加真实的登录验证逻辑
-      // 只有特定的用户名和密码才能登录
+      // In a real application, this would call an API to authenticate the user
+      // For demo purposes, only admin/123456 is accepted
       if (username === 'admin' && password === '123456') {
-        // 模拟获取到的用户信息
+        // Simulate getting user information
         const data = {
           token: 'admin-token'
         }
@@ -47,7 +47,7 @@ const actions = {
         setToken(data.token)
         resolve()
       } else {
-        reject(new Error('用户名或密码错误'))
+        reject(new Error('Invalid username or password'))
       }
     })
   },
@@ -60,34 +60,33 @@ const actions = {
         roles: ['admin'],
         name: 'Admin'
       }
-      
-      let now = new Date(); // 获取当前时间
-      let time_str = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate(); // 格式化时间为字符串
-      watermark.set(data.name + "\n" + time_str)
-      
+
+      const now = new Date() // Get current time
+      const time_str = now.getFullYear() + '.' + (now.getMonth() + 1) + '.' + now.getDate() // Format time as string
+      watermark.set(data.name + '\n' + time_str)
+
       const { roles, name } = data
 
       if (!roles || roles.length <= 0) {
         reject('getInfo: roles must be a non-null array!')
       }
-      
+
       commit('SET_ROLES', roles)
       commit('SET_NAME', name)
       resolve(data)
     })
   },
 
-
   // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
-        removeToken() // must remove  token  first
+        removeToken() // Must remove token first
         resetRouter()
         commit('RESET_STATE')
         resolve()
-      }).catch(error => {
-        // 即使没有后端接口，我们也应该正常登出
+      }).catch(() => {
+        // Even without backend interface, we should logout normally
         removeToken()
         resetRouter()
         commit('RESET_STATE')
@@ -99,7 +98,7 @@ const actions = {
   // remove token
   resetToken({ commit }) {
     return new Promise(resolve => {
-      removeToken() // must remove  token  first
+      removeToken() // Must remove token first
       commit('RESET_STATE')
       resolve()
     })

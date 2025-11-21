@@ -3,16 +3,11 @@
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-people">
-          <i class="card-panel-icon el-icon-s-data"></i>
+          <i class="card-panel-icon el-icon-s-data" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">xxx</div>
-          <count-to
-            :start-val="0"
-            :end-val="Stats_count"
-            :duration="1000"
-            class="card-panel-num"
-          />
+          <span class="card-panel-num">{{ Stats_count }}</span>
           次
         </div>
       </div>
@@ -20,16 +15,11 @@
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-message">
-          <i class="card-panel-icon el-icon-success"></i>
+          <i class="card-panel-icon el-icon-success" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">xxx</div>
-          <count-to
-            :start-val="0"
-            :end-val="Success_count"
-            :duration="1000"
-            class="card-panel-num"
-          />
+          <span class="card-panel-num">{{ Success_count }}</span>
           次
         </div>
       </div>
@@ -37,35 +27,23 @@
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-money">
-          <i class="card-panel-icon el-icon-s-marketing"></i>
+          <i class="card-panel-icon el-icon-s-marketing" />
         </div>
 
         <div class="card-panel-description">
           <div class="card-panel-text">xxx</div>
-          <count-to
-            :start-val="0"
-            :end-val="Success_rate"
-            :decimals="2"
-            :duration="1000"
-            class="card-panel-num"
-          />
-          %
+          <span class="card-panel-num">{{ Success_rate }}%</span>
         </div>
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-shopping">
-          <i class="card-panel-icon el-icon-s-comment"></i>
+          <i class="card-panel-icon el-icon-s-comment" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">xxx</div>
-          <count-to
-            :start-val="0"
-            :end-val="exhibit_total"
-            :duration="1000"
-            class="card-panel-num"
-          />
+          <span class="card-panel-num">{{ exhibit_total }}</span>
           条
         </div>
       </div>
@@ -73,16 +51,11 @@
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-shopping">
-          <i class="card-panel-icon el-icon-user"></i>
+          <i class="card-panel-icon el-icon-user" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">xxxx</div>
-          <count-to
-            :start-val="0"
-            :end-val="questions_total"
-            :duration="1000"
-            class="card-panel-num"
-          />
+          <span class="card-panel-num">{{ questions_total }}</span>
           条
         </div>
       </div>
@@ -90,16 +63,11 @@
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-shopping">
-          <i class="card-panel-icon el-icon-s-platform"></i>
+          <i class="card-panel-icon el-icon-s-platform" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">xxx</div>
-          <count-to
-            :start-val="0"
-            :end-val="showcase_total"
-            :duration="1000"
-            class="card-panel-num"
-          />
+          <span class="card-panel-num">{{ showcase_total }}</span>
           次
         </div>
       </div>
@@ -112,14 +80,12 @@
   </el-row>
 </template>
 <script>
-import CountTo from "vue-count-to";
-import MyEcharts from "@/components/MyEcharts";
-import { options1 } from "@/options.js";
+
+import { options1 } from '@/options.js'
 // 移除了对 @/api/dashboard 的引用，因为这个API已经被删除了
 
 export default {
   components: {
-    CountTo,
     // MyEcharts,
   },
 
@@ -135,16 +101,16 @@ export default {
       report_total: 32,
       showcase_total: 89,
       options: options1,
-      width: "100%",
-    };
+      width: '100%'
+    }
   },
   created() {
     // this.getBaseInfo(); // 移除了对API的调用
   },
   methods: {
     // 移除了 getBaseInfo 方法，因为我们不再调用后端API
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>

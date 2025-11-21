@@ -3,7 +3,6 @@ import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
-
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 60 * 1000
@@ -58,6 +57,5 @@ service.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
 
 export default service

@@ -11,11 +11,11 @@
       mode="vertical"
     >
       <el-menu-item index="/" @click="handleMenuItemClick('/')">
-        <i class="el-icon-s-home"></i>
+        <i class="el-icon-s-home" />
         <span slot="title">仪表盘</span>
       </el-menu-item>
       <el-menu-item index="/data" @click="handleMenuItemClick('/data')">
-        <i class="el-icon-s-data"></i>
+        <i class="el-icon-s-data" />
         <span slot="title">数据面板</span>
       </el-menu-item>
     </el-menu>

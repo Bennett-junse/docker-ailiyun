@@ -17,7 +17,7 @@ export default {
       return this.$route.path
     },
     showFooter() {
-      const { meta = {} } = this.$route
+      const { meta = {}} = this.$route
       return Boolean(meta.isFooter) // 如果路由的 meta.isFooter 属性为 true，则显示底部栏
     }
   }

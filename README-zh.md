@@ -1,56 +1,89 @@
+# 课件Web项目
 
-## Build Setup
+这是一个基于Vue.js的课件Web项目。
+
+## 功能特性
+
+- 基于Vue.js框架开发
+- 使用Element UI组件库
+- 支持权限控制
+- 数据可视化功能（ECharts）
+
+## 快速开始
+
+### 开发环境
 
 ```bash
-# 克隆项目
-git clone https://git.bg.huohua.cn/qa/test_courseware/live_airtestproject.git
-
-# 进入项目目录
-cd courseware-Tool-Platform
-
 # 安装依赖
 npm install
 
-# 建议不要直接使用 cnpm 安装以来，会有各种诡异的 bug。可以通过如下操作解决 npm 下载速度慢的问题
-npm install --registry=https://registry.npm.taobao.org
-
-# 启动服务
+# 启动开发服务器
 npm run dev
 ```
 
-浏览器访问 [http://localhost:9528](http://localhost:9528)
-
-## 发布
+### 生产构建
 
 ```bash
-# 构建测试环境
-npm run build:stage
-
-# 构建生产环境
+# 构建生产版本
 npm run build:prod
 ```
 
-## 其它
+## Docker 部署
+
+本项目支持通过 Docker 进行容器化部署。
+
+### 使用 Docker 直接部署
 
 ```bash
-# 预览发布环境效果
-npm run preview
+# 构建 Docker 镜像
+docker build -t courseware-web .
 
-# 预览发布环境效果 + 静态资源分析
-npm run preview -- --report
-
-# 代码格式检查
-npm run lint
-
-# 代码格式检查并自动修复
-npm run lint -- --fix
+# 运行容器
+docker run -d -p 8080:80 --name courseware-web courseware-web
 ```
 
-## Browsers support
+访问 `http://localhost:8080` 即可查看应用。
 
-Modern browsers and Internet Explorer 10+.
+### 使用 Docker Compose 部署
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| --------- | --------- | --------- | --------- |
-| IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions
+```bash
+# 构建并启动服务
+docker-compose up -d
+```
 
+访问 `http://localhost:8080` 即可查看应用。
+
+### 停止服务
+
+```bash
+# 停止并移除容器
+docker-compose down
+```
+
+## 项目结构
+
+```
+.
+├── public                   # 静态资源
+│   └── index.html           # HTML模板
+├── src                      # 源代码
+│   ├── api                  # API接口
+│   ├── components           # 全局组件
+│   ├── layout               # 布局组件
+│   ├── router               # 路由配置
+│   ├── store                # 状态管理
+│   ├── styles               # 全局样式
+│   ├── utils                # 工具函数
+│   ├── views                # 页面视图
+│   ├── App.vue              # 根组件
+│   ├── main.js              # 入口文件
+│   ├── permission.js        # 权限控制
+│   └── settings.js          # 配置文件
+├── .env.xxx                 # 环境变量配置
+├── vue.config.js            # Vue CLI 配置
+└── package.json             # 包依赖管理
+```
+
+## 许可证
+
+MIT
